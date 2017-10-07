@@ -1,91 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="500dp"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <HorizontalScrollView
     android:layout_width="500dp"
     android:layout_height="wrap_content"
-    android:background="@android:color/holo_green_light"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
         android:id="@+id/toolbar"
         android:layout_width="500dp"
         android:layout_height="65dp"
+        android:paddingRight="10dp"
         android:orientation="horizontal"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@android:color/holo_green_light"
+        android:background="@android:color/holo_purple"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
         <View
-            android:id="@+id/hotel"
+            android:id="@+id/chinese"
+            android:tag="Chinese"
+            android:onClick="populateList"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:background="@drawable/cana" />
+            android:background="@drawable/china" />
 
         <View
-            android:id="@+id/eateries"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginStart="25dp"
-            android:background="@drawable/can2" />
-
-        <View
-            android:id="@+id/park"
+            android:id="@+id/western"
+            android:tag="Western"
+            android:onClick="populateList"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
-            android:background="@drawable/can11" />
+            android:background="@drawable/eu" />
 
         <View
-            android:id="@+id/museum"
+            android:id="@+id/japanese"
+            android:tag="Japanese"
+            android:onClick="populateList"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
-            android:background="@drawable/can14" />
+            android:background="@drawable/japan" />
 
         <View
-            android:id="@+id/sport"
+            android:id="@+id/korean"
+            android:tag="Korean"
+            android:onClick="populateList"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
-            android:background="@drawable/store" />
+            android:background="@drawable/sk" />
 
         <View
-            android:id="@+id/search"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:id="@+id/malay"
+            android:tag="Malay"
+            android:onClick="populateList"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
-            android:background="@drawable/store" />
+            android:background="@drawable/malaysia" />
 
         <View
-            android:id="@+id/searcha"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:id="@+id/indonesian"
+            android:tag="Indonesian"
+            android:onClick="populateList"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
-            android:background="@drawable/store" />
+            android:background="@drawable/indonesia" />
+
+        <View
+            android:id="@+id/indian"
+            android:tag="Indian"
+            android:onClick="populateList"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/india" />
+
+        <View
+            android:id="@+id/vegetarian"
+            android:tag="Vegetarian"
+            android:onClick="populateList"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/veg" />
 
     </LinearLayout>
 </HorizontalScrollView>
+</RelativeLayout>
