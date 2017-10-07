@@ -7,13 +7,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,8 +18,9 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private String id;
+    private String mode;
     private LinearLayout list;
-    private ArrayList<Stall> groupStalls = new ArrayList<Stall>();
+    //private ArrayList<Stall> groupStalls = new ArrayList<Stall>(); //to fill with content of list for stalls in canteen/cuisine choice
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle bundleOld = getIntent().getExtras();
         Intent intent = getIntent();
-        String mode = "";
         if (intent.hasExtra("MODE")) {
             mode = bundleOld.getString("MODE");
         }
@@ -91,13 +88,18 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout a = new LinearLayout(this);
         a.setOrientation(LinearLayout.HORIZONTAL);
         ListView view = new ListView(this, cur);
-        view.setBackgroundResource(R.drawable.background_border);
+        if (mode.equals("canteen")) {
+            view.setBackgroundResource(R.drawable.background_border_purple);
+        }
+        else{
+            view.setBackgroundResource(R.drawable.background_border_orange);
+        }
         view.setLayoutParams(new LinearLayout.LayoutParams(Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.WRAP_CONTENT));
         a.addView(view);
         a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, cur.getId(), Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, cur.getName(), Toast.LENGTH_LONG).show();
                 //go to Menu list of selected stall
             }
         });

@@ -17,7 +17,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@android:color/holo_purple"
+        android:background="@android:color/holo_orange_light"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
