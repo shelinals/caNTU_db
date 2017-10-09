@@ -139,13 +139,17 @@ public class MainActivity extends AppCompatActivity {
 
         //populate groupStalls arraylist
         //using Database's method
-        //Stall temp;
-       /* while (true) {
-            temp = new Stall(ngambil data di db)
+        /*Stall temp;
+       while (true) {
+            temp = new Stall(get data from db);
             addNewItemInList(list, temp);
             if database kosong
                 break;
-        }*/
+        }
+        for (Stall cur : gropStalls){
+
+        }
+      */
         belongsToCanteenView = v;
     }
 

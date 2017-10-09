@@ -25,10 +25,18 @@ public class LauncherActivity extends AppCompatActivity {
         Bundle bundleOld = getIntent().getExtras();
 
         Button login = (Button) findViewById(R.id.login);
+        Button logout = (Button) findViewById(R.id.logout);
         Intent intent = getIntent();
         if (intent.hasExtra("ID")) {
             String id = bundleOld.getString("ID");
             login.setVisibility(View.INVISIBLE);
+            logout.setVisibility(View.VISIBLE);
+            logout.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(LauncherActivity.this, LauncherActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
 
         final Context context = this;
@@ -58,6 +66,7 @@ public class LauncherActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         BroadcastReceiver broadcast_reciever = new BroadcastReceiver() {
 
