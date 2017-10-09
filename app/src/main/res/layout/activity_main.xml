@@ -12,13 +12,20 @@
         android:layout_width="500dp"
         android:layout_height="65dp"
         android:orientation="horizontal" />
+    <LinearLayout
+        android:id="@+id/menuTitle"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar">
+    </LinearLayout>
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/menuTitle">
         <LinearLayout
             android:id="@+id/list"
-            android:layout_width="500dp"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar"
             android:orientation="vertical" />
