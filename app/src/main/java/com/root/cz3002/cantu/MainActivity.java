@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private String id;
     private String mode;
     private LinearLayout list;
+    private boolean inStall = false;
+    private View belongsToCanteenView;
     //private ArrayList<Stall> groupStalls = new ArrayList<Stall>(); //to fill with content of list for stalls in canteen/cuisine choice
 
     @Override
@@ -144,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
             if database kosong
                 break;
         }*/
+        belongsToCanteenView = v;
     }
 
     public void populateMenu(View v) {
@@ -160,10 +163,27 @@ public class MainActivity extends AppCompatActivity {
         MenuItem item2 = new MenuItem(2,"Kung Pao Chicken Rice","MiniWok",4.00);
         addNewItemInList(list, null, item2);
 
+        inStall = true;
+
         //populate MenuItems arraylist
         //using Database's method
        /* for (MenuItem item : MenuItems) {
             addNewItemInList(list, item);
         }*/
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(inStall){
+            System.out.println("balik ke canteen anjeng");
+            populateList(belongsToCanteenView);
+            inStall = false;
+            return;
+        }
+
+        // code here to show dialog
+        super.onBackPressed();  // optional depending on your needs
+
     }
 }
