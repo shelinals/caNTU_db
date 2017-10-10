@@ -35,4 +35,41 @@
         android:clickable="true"
         app:fabSize="normal"
         app:srcCompat="@drawable/cuisine" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/orderList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="22dp"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/order_list"
+        android:layout_above="@+id/dabaoer"
+        android:layout_alignParentRight="true"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/dabaoer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="22dp"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/dabaoer"
+        android:layout_above="@+id/cash"
+        android:layout_alignParentRight="true"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/cash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="24dp"
+        android:layout_marginRight="22dp"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/cash" />
+
 </RelativeLayout>

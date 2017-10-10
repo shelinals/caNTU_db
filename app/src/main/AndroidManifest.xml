@@ -31,6 +31,13 @@
             android:name=".LoginActivity"
             android:screenOrientation="sensorPortrait">
         </activity>
+        <activity
+            android:label="Dabao Request"
+            android:background="@color/pumpkin"
+            android:name=".DabaoerActivity"
+            android:screenOrientation="sensorPortrait">
+        </activity>
+
     </application>
 
 </manifest>

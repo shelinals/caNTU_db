@@ -85,6 +85,41 @@ public class MainActivity extends AppCompatActivity {
             });
             populateList(findViewById(R.id.chinese));
         }
+        FloatingActionButton orderList = (FloatingActionButton) findViewById(R.id.orderList);
+        orderList.setImageResource(R.drawable.order_list);
+        orderList.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.pumpkin)));
+        orderList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        FloatingActionButton dabaoer = (FloatingActionButton) findViewById(R.id.dabaoer);
+        dabaoer.setImageResource(R.drawable.dabaoer);
+        dabaoer.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.pumpkin)));
+        dabaoer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DabaoerActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        FloatingActionButton creditCard = (FloatingActionButton) findViewById(R.id.cash);
+        creditCard.setImageResource(R.drawable.cash);
+        creditCard.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.pumpkin)));
+        creditCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
     private boolean addNewItemInList(LinearLayout list, final Stall cur, final MenuItem menu) {
