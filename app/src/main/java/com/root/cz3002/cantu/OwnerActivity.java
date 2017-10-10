@@ -49,7 +49,7 @@ public class OwnerActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         list = (LinearLayout) inflater.inflate(R.layout.list_view, (ViewGroup) findViewById(R.id.list));
 
-        populateOrder();
+        populateOrder(null);
 
     }
     private boolean addNewItemInList(final LinearLayout list, final Order cur) {
@@ -95,7 +95,7 @@ public class OwnerActivity extends AppCompatActivity {
         return false;
     }
 
-    public void populateOrder() {
+    public void populateOrder(View v) {
         list.removeAllViews();
 
         //dummy, example for populating list
