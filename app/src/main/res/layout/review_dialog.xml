@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:id="@+id/review_item">
+
+    <TextView
+        android:id="@+id/stallName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="stall Name"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="-10dp"
+        android:textSize="20sp" />
+
+    <RatingBar
+        android:id="@+id/ratingBarWrite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/stallName"
+        android:layout_marginLeft="5dp"
+        android:scaleX="0.6"
+        android:scaleY="0.6"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/commentWrite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Leave a review here"
+        android:layout_marginTop="-10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@id/ratingBarWrite"
+        android:textSize="20sp"/>
+
+</RelativeLayout>

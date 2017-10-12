@@ -6,11 +6,12 @@
     <RelativeLayout
         android:id="@+id/stall_info"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:gravity="bottom"
         android:layout_alignParentBottom="true">
 
         <TextView
+            android:id="@+id/textStall"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="30sp"
