@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Review> reviews = new ArrayList<Review>();
     private ReviewAdapter reviewAdapter;
     private ListView reviewListView;
+    private Runnable run;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,7 +144,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        run = new Runnable() {
+            public void run() {
+                //reload content
+                //reviews.clear();
+                //reviews.addAll(db.readAll());
+                reviewAdapter.notifyDataSetChanged();
+                reviewListView.invalidateViews();
+                reviewListView.refreshDrawableState();
+            }
+        };
     }
+
     private boolean addNewItemInList(LinearLayout list, final Stall cur, final MenuItem menu) {
         LinearLayout a = new LinearLayout(this);
         a.setOrientation(LinearLayout.HORIZONTAL);
@@ -174,8 +188,7 @@ public class MainActivity extends AppCompatActivity {
             a.addView(menuView);
 
             ImageView inputToOrder = (ImageView) menuView.findViewById(MenuListView.ORDER_INT);
-            QuantityView quantity = (QuantityView) menuView.findViewById(MenuListView.QUANTITY_INT);
-            final int qty = quantity.getQuantity();
+            final QuantityView quantity = (QuantityView) menuView.findViewById(MenuListView.QUANTITY_INT);
 
             inputToOrder.setTag(menu);
 
@@ -186,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
 
                     //To Order Database input menu and qty
 
-                    Toast.makeText(MainActivity.this, "Input to DB "+ menuItem.getName() + " with quantity "+qty, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Input to DB "+ menuItem.getName() + " with quantity "+quantity.getQuantity(), Toast.LENGTH_SHORT).show();
 
                 }
             });
@@ -339,12 +352,6 @@ public class MainActivity extends AppCompatActivity {
                 final View dialogView = inflater.inflate(R.layout.review_dialog, null);
                 TextView stallName = (TextView) dialogView.findViewById(R.id.stallName);
                 stallName.setText(theStall.getName());
-                final EditText edit = (EditText) dialogView.findViewById(R.id.commentWrite);
-                edit.setOnFocusChangeListener(new OnFocusChangeListener(){
-                    public void onFocusChange(View v, boolean hasFocus){
-                        edit.setHint("");
-                    }
-                });
 
                 builder.setView(dialogView);
                 builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
@@ -361,8 +368,11 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Rating: "+rating+" and Comment: "+comment, Toast.LENGTH_SHORT).show();
 
                         //to refresh layout
-                        showInfoAndReviews(theStall);
-
+                        //with dummy
+                        Review review3 = new Review(3,"Lorem","Meh!", "11-08-2017 18:30", 1);
+                        reviews.add(review3);
+                        System.out.println(reviews);
+                        runOnUiThread(run);
                     }
                 });
 
@@ -384,6 +394,16 @@ public class MainActivity extends AppCompatActivity {
 
         bottomSheetDialog.show();
     }
+
+//    public void updatedData(ArrayList<Review> updated){
+//        reviewAdapter.clear();
+//        if(updated != null){
+//            for(Review rev : updated){
+//                reviewAdapter.insert(rev, reviewAdapter.getCount());
+//            }
+//        }
+//        runOnUiThread(run);
+//    }
 
     @Override
     public void onBackPressed()
