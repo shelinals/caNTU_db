@@ -118,7 +118,7 @@ public class OwnerActivity extends AppCompatActivity {
         for (Order cur: groupOrders)
             addNewItemInList(list, temp);*/
        if (v != null)
-           Toast.makeText(OwnerActivity.this, "Refreshed", Toast.LENGTH_LONG).show();
+           Toast.makeText(OwnerActivity.this, "Refreshed", Toast.LENGTH_SHORT).show();
     }
 
 

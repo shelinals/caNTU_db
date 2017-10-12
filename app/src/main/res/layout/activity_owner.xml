@@ -4,7 +4,7 @@
     android:background="#ffefef">
     <RelativeLayout
         android:id="@+id/toolbar"
-        android:layout_width="500dp"
+        android:layout_width="360dp"
         android:layout_height="65dp"
         android:background="@android:color/holo_red_light"
         android:alpha="0.8"
