@@ -217,7 +217,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         String category = v.getTag().toString();
-        Toast.makeText(MainActivity.this, category, Toast.LENGTH_LONG).show();
 
         //dummy, example for populating list
         Stall temp = new Stall(1,"MiniWok","A","Chinese","10:00-20:00");
@@ -236,6 +235,20 @@ public class MainActivity extends AppCompatActivity {
 
         }
       */
+        
+        /////load canteen name
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        RelativeLayout bottomBarCanteen = (RelativeLayout) inflater.inflate(R.layout.category_info, (ViewGroup) findViewById(R.id.bottom_bar));
+        TextView categoryInfo = (TextView) bottomBarCanteen.findViewById(R.id.textCategory);
+
+        if(mode.equals("canteen")) {
+            findViewById(R.id.textCategory).setBackgroundResource(R.drawable.rounded_corner_purple);
+            category = "Canteen " + category;
+        }
+
+        categoryInfo.setText(category);
+        ///////////////////////
+
         belongsToCanteenView = v;
     }
 
