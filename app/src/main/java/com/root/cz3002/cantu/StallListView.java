@@ -10,10 +10,10 @@ import android.widget.TextView;
  * Created by Christantia on 10/6/2017.
  */
 
-public class ListView extends LinearLayout {
+public class StallListView extends LinearLayout {
     public final static int PLUS_INT = 0;
     public final static int ARROW_INT = 1;
-    public ListView(Context context, Stall info) {
+    public StallListView(Context context, Stall info) {
         super(context);
         setOrientation(LinearLayout.HORIZONTAL);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
