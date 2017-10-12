@@ -24,6 +24,14 @@
             android:orientation="vertical" />
     </ScrollView>
 
+    <RelativeLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true">
+    </RelativeLayout>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/switchMode"
         android:layout_width="wrap_content"
