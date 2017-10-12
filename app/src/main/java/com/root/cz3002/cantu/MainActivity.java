@@ -104,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DabaoerActivity.class);
-                startActivity(intent);
-                finish();
+                    startActivity(intent);
+                    finish();
             }
         });
 
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         creditCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, MainActivity.class);
+                Intent intent = new Intent(context, Credit.class);
                 startActivity(intent);
                 finish();
             }
