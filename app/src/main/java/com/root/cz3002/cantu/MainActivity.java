@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
       */
-        
+
         /////load canteen name
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         RelativeLayout bottomBarCanteen = (RelativeLayout) inflater.inflate(R.layout.category_info, (ViewGroup) findViewById(R.id.bottom_bar));
@@ -260,11 +260,14 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this, stallName, Toast.LENGTH_LONG).show();
 
         //dummy, example for populating Menu Items
-        MenuItem item = new MenuItem(1,"Sambal Fried Chicken","MiniWok",3.50);
-        addNewItemInList(list, null, item);
 
-        MenuItem item2 = new MenuItem(2,"Kung Pao Chicken Rice","MiniWok",4.00);
-        addNewItemInList(list, null, item2);
+        for(int i=0;i<10;i++){
+            MenuItem item = new MenuItem(i,"Sambal Fried Chicken","MiniWok",3.50);
+            addNewItemInList(list, null, item);
+
+            MenuItem item2 = new MenuItem(i,"Kung Pao Chicken Rice","MiniWok",4.00);
+            addNewItemInList(list, null, item2);
+        }
 
         inStall = true;
 
@@ -408,21 +411,12 @@ public class MainActivity extends AppCompatActivity {
         bottomSheetDialog.show();
     }
 
-//    public void updatedData(ArrayList<Review> updated){
-//        reviewAdapter.clear();
-//        if(updated != null){
-//            for(Review rev : updated){
-//                reviewAdapter.insert(rev, reviewAdapter.getCount());
-//            }
-//        }
-//        runOnUiThread(run);
-//    }
-
     @Override
     public void onBackPressed()
     {
         if(inStall){
             populateList(belongsToCanteenView);
+            bottomBar.setOnClickListener(null);
             inStall = false;
             return;
         }
