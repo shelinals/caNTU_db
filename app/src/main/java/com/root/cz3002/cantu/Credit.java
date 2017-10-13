@@ -17,11 +17,11 @@ public class Credit extends AppCompatActivity {
         CreditItem cr = new CreditItem(10.00);
 
         TextView tv1 = (TextView) findViewById(R.id.crText);
-        tv1.setText("Credit:");
+        tv1.setText(R.string.credit_name);
         tv1.setTextSize(20);
 
         TextView tv2 = (TextView) findViewById(R.id.credit);
-        tv1.setText(String.valueOf(cr.getCredit()));
-        tv1.setTextSize(20);
+        tv2.setText(String.valueOf(cr.getCredit()));
+        tv2.setTextSize(20);
     }
 }

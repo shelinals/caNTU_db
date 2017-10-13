@@ -50,6 +50,13 @@
             android:theme="@style/AppTheme1"
             android:screenOrientation="sensorPortrait">
         </activity>
+        <activity
+            android:label="Order List"
+            android:name=".OrderActivity"
+            android:background="@color/pumpkin"
+            android:theme="@style/AppTheme1"
+            android:screenOrientation="sensorPortrait">
+        </activity>
 
     </application>
 

@@ -17,7 +17,7 @@ public class DabaoerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dabao_request);
+        setContentView(R.layout.list_view_from_button);
 
         Map<String,Integer> m =  new HashMap<String,Integer>();
         m.put("fish soup", 1);
@@ -37,7 +37,7 @@ public class DabaoerActivity extends AppCompatActivity {
 
         DabaoRequestAdapter dabaoAdapter = new DabaoRequestAdapter(this, dabaoRequests);
 
-        ListView listView = (ListView) findViewById(R.id.listview_dabao);
+        ListView listView = (ListView) findViewById(R.id.listview_from_button);
         listView.setAdapter(dabaoAdapter);
 
     }

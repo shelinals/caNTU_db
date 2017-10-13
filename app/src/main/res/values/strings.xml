@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CaNTU</string>
+    <string name="credit_name">Credit :</string>
+    <string name="cancel">CANCEL</string>
 </resources>
