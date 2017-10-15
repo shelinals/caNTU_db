@@ -5,6 +5,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 /**
  * Created by brigi on 12/10/2017.
@@ -19,7 +22,18 @@ public class OrderFragment2 extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        ArrayList<ToReceiveData> toReceiveRequests = new ArrayList<ToReceiveData>();
+        toReceiveRequests.add(new ToReceiveData(2.80, "steamed chicken rice", "chicken rice","CAN A",2,5.6,"Self-Collect"));
+        toReceiveRequests.add(new ToReceiveData(4.50, "fish bread crumb", "italian","CAN A",1,4.5,"Wait Dabaoer"));
+        toReceiveRequests.add(new ToReceiveData(2.80, "roasted chicken rice", "chicken rice","CAN A",1,2.8,"Self-Collect"));
+
+        ToReceiveAdapter toReceiveAdapter = new ToReceiveAdapter(getActivity(),toReceiveRequests);
+
+        View rootView = inflater.inflate(R.layout.list_view_from_button, container, false);
+
+        ListView listView = (ListView) rootView.findViewById(R.id.listview_from_button);
+        listView.setAdapter(toReceiveAdapter);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.order_fragment2, container, false);
+        return rootView;
     }
 }

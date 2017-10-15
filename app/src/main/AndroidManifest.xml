@@ -57,6 +57,14 @@
             android:theme="@style/AppTheme1"
             android:screenOrientation="sensorPortrait">
         </activity>
+        <activity
+            android:label="Order Dabao Waiting List"
+            android:name=".OrderListPayDabaoActivity"
+            android:background="@color/pumpkin"
+            android:theme="@style/AppTheme1"
+            android:screenOrientation="sensorPortrait">
+        </activity>
+
 
     </application>
 

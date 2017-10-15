@@ -31,7 +31,6 @@ public class OrderActivity extends AppCompatActivity {
         final PagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
 
-
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -51,4 +50,6 @@ public class OrderActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

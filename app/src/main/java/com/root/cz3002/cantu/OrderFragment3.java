@@ -25,9 +25,6 @@ public class OrderFragment3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Map<String,Integer> m =  new HashMap<String,Integer>();
-        m.put("fish soup", 1);
-        m.put("wanton noodle",1);
 
         ArrayList<WaitingDabaoer> waitingRequests = new ArrayList<WaitingDabaoer>();
         waitingRequests.add(new WaitingDabaoer(1, "gg", "can1", "yong tau foo","SEARCHING"));
