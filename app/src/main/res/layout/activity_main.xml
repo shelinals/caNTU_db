@@ -32,6 +32,23 @@
         android:layout_alignParentBottom="true">
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/bottom_bar_category"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/textCanteen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="30sp"
+            android:textAlignment="center"
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@drawable/rounded_corner_orange"
+            android:text="Category Info" />
+    </RelativeLayout>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/switchMode"
         android:layout_width="wrap_content"

@@ -14,6 +14,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout bottomBar;
     private boolean inStall = false;
     private View belongsToCanteenView;
+    private RelativeLayout bottomBarCanteen;
     //private ArrayList<Stall> groupStalls = new ArrayList<Stall>(); //to fill with content of list for stalls in canteen/cuisine choice
     private ArrayList<Review> reviews = new ArrayList<Review>();
     private ReviewAdapter reviewAdapter;
@@ -170,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
             a.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    bottomBarCanteen.setVisibility(View.INVISIBLE);
                     populateMenu(v);
                 }
             });
@@ -211,10 +214,12 @@ public class MainActivity extends AppCompatActivity {
         list.removeAllViews();
         if(bottomBar!=null){
             bottomBar.removeAllViews();
+            bottomBar.setOnClickListener(null);
         }
 
         String category = v.getTag().toString();
 
+        Toast.makeText(MainActivity.this, category, Toast.LENGTH_SHORT).show();
         //dummy, example for populating list
         Stall temp = new Stall(1,"MiniWok","A","Chinese","10:00-20:00");
         addNewItemInList(list, temp, null);
@@ -225,26 +230,31 @@ public class MainActivity extends AppCompatActivity {
        while (true) {
             temp = new Stall(get data from db);
             addNewItemInList(list, temp);
-            if database kosong
+            if database empty
                 break;
         }
+        =========OR===========
         for (Stall cur : gropStalls){
 
         }
       */
 
         /////load canteen name
-        LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        RelativeLayout bottomBarCanteen = (RelativeLayout) inflater.inflate(R.layout.category_info, (ViewGroup) findViewById(R.id.bottom_bar));
-        TextView categoryInfo = (TextView) bottomBarCanteen.findViewById(R.id.textCategory);
+        bottomBarCanteen = (RelativeLayout) findViewById(R.id.bottom_bar_category);
+        TextView categoryInfo = (TextView) findViewById(R.id.textCanteen);
 
+        System.out.println("MODE: ");
         if(mode.equals("canteen")) {
-            findViewById(R.id.textCategory).setBackgroundResource(R.drawable.rounded_corner_purple);
+            System.out.println("IN CANTEEN");
+            categoryInfo.setBackgroundResource(R.drawable.rounded_corner_purple);
             category = "Canteen " + category;
+            System.out.println("The Category INSIDE: " + category + ", " + categoryInfo.getText().toString());
         }
 
+        bottomBarCanteen.setVisibility(View.VISIBLE);
         categoryInfo.setText(category);
-        ///////////////////////
+        System.out.println("The Category: " + category + ", " + categoryInfo.getText().toString());
+        //////////////////////
 
         belongsToCanteenView = v;
     }
