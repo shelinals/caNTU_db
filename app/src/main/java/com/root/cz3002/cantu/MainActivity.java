@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
@@ -12,6 +14,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -40,10 +43,12 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout bottomBar;
     private boolean inStall = false;
     private View belongsToCanteenView;
+    private RelativeLayout bottomBarCanteen;
     //private ArrayList<Stall> groupStalls = new ArrayList<Stall>(); //to fill with content of list for stalls in canteen/cuisine choice
     private ArrayList<Review> reviews = new ArrayList<Review>();
     private ReviewAdapter reviewAdapter;
     private ListView reviewListView;
+    private Runnable run;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,8 +110,51 @@ public class MainActivity extends AppCompatActivity {
             });
             populateList(findViewById(R.id.chinese));
         }
+        FloatingActionButton orderList = (FloatingActionButton) findViewById(R.id.orderList);
+        orderList.setImageResource(R.drawable.order_list);
+        orderList.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.pumpkin)));
+        orderList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, OrderActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        FloatingActionButton dabaoer = (FloatingActionButton) findViewById(R.id.dabaoer);
+        dabaoer.setImageResource(R.drawable.dabaoer);
+        dabaoer.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.pumpkin)));
+        dabaoer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DabaoerActivity.class);
+                    startActivity(intent);
+            }
+        });
+
+        FloatingActionButton creditCard = (FloatingActionButton) findViewById(R.id.cash);
+        creditCard.setImageResource(R.drawable.cash);
+        creditCard.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.pumpkin)));
+        creditCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, Credit.class);
+                startActivity(intent);
+            }
+        });
+
+        run = new Runnable() {
+            public void run() {
+                //reload content
+                //reviews.clear();
+                //reviews.addAll(db.readAll());
+                reviewAdapter.notifyDataSetChanged();
+                reviewListView.invalidateViews();
+                reviewListView.refreshDrawableState();
+            }
+        };
     }
+
     private boolean addNewItemInList(LinearLayout list, final Stall cur, final MenuItem menu) {
         LinearLayout a = new LinearLayout(this);
         a.setOrientation(LinearLayout.HORIZONTAL);
@@ -124,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
             a.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    bottomBarCanteen.setVisibility(View.INVISIBLE);
                     populateMenu(v);
                 }
             });
@@ -139,8 +188,7 @@ public class MainActivity extends AppCompatActivity {
             a.addView(menuView);
 
             ImageView inputToOrder = (ImageView) menuView.findViewById(MenuListView.ORDER_INT);
-            QuantityView quantity = (QuantityView) menuView.findViewById(MenuListView.QUANTITY_INT);
-            final int qty = quantity.getQuantity();
+            final QuantityView quantity = (QuantityView) menuView.findViewById(MenuListView.QUANTITY_INT);
 
             inputToOrder.setTag(menu);
 
@@ -151,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
 
                     //To Order Database input menu and qty
 
-                    Toast.makeText(MainActivity.this, "Input to DB "+ menuItem.getName() + " with quantity "+qty, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Input to DB "+ menuItem.getName() + " with quantity "+quantity.getQuantity(), Toast.LENGTH_SHORT).show();
 
                 }
             });
@@ -166,24 +214,48 @@ public class MainActivity extends AppCompatActivity {
         list.removeAllViews();
         if(bottomBar!=null){
             bottomBar.removeAllViews();
+            bottomBar.setOnClickListener(null);
         }
 
         String category = v.getTag().toString();
-        Toast.makeText(MainActivity.this, category, Toast.LENGTH_LONG).show();
 
+        Toast.makeText(MainActivity.this, category, Toast.LENGTH_SHORT).show();
         //dummy, example for populating list
         Stall temp = new Stall(1,"MiniWok","A","Chinese","10:00-20:00");
         addNewItemInList(list, temp, null);
 
         //populate groupStalls arraylist
         //using Database's method
-        //Stall temp;
-       /* while (true) {
-            temp = new Stall(ngambil data di db)
+        /*Stall temp;
+       while (true) {
+            temp = new Stall(get data from db);
             addNewItemInList(list, temp);
-            if database kosong
+            if database empty
                 break;
-        }*/
+        }
+        =========OR===========
+        for (Stall cur : gropStalls){
+
+        }
+      */
+
+        /////load canteen name
+        bottomBarCanteen = (RelativeLayout) findViewById(R.id.bottom_bar_category);
+        TextView categoryInfo = (TextView) findViewById(R.id.textCanteen);
+
+        System.out.println("MODE: ");
+        if(mode.equals("canteen")) {
+            System.out.println("IN CANTEEN");
+            categoryInfo.setBackgroundResource(R.drawable.rounded_corner_purple);
+            category = "Canteen " + category;
+            System.out.println("The Category INSIDE: " + category + ", " + categoryInfo.getText().toString());
+        }
+
+        bottomBarCanteen.setVisibility(View.VISIBLE);
+        categoryInfo.setText(category);
+        System.out.println("The Category: " + category + ", " + categoryInfo.getText().toString());
+        //////////////////////
+
         belongsToCanteenView = v;
     }
 
@@ -195,11 +267,14 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this, stallName, Toast.LENGTH_LONG).show();
 
         //dummy, example for populating Menu Items
-        MenuItem item = new MenuItem(1,"Sambal Fried Chicken","MiniWok",3.50);
-        addNewItemInList(list, null, item);
 
-        MenuItem item2 = new MenuItem(2,"Kung Pao Chicken Rice","MiniWok",4.00);
-        addNewItemInList(list, null, item2);
+        for(int i=0;i<10;i++){
+            MenuItem item = new MenuItem(i,"Sambal Fried Chicken","MiniWok",3.50);
+            addNewItemInList(list, null, item);
+
+            MenuItem item2 = new MenuItem(i,"Kung Pao Chicken Rice","MiniWok",4.00);
+            addNewItemInList(list, null, item2);
+        }
 
         inStall = true;
 
@@ -288,7 +363,7 @@ public class MainActivity extends AppCompatActivity {
         location.setText("Location: "+stall.getCanteen());
 
         if(mode.equals("canteen")){
-            stallName.setBackgroundResource(R.drawable.rounded_corner_purple);
+            stallName.setBackgroundResource(R.drawable.background_purple);
             writeReview.setBackgroundResource(R.drawable.background_purple);
         }
 
@@ -300,12 +375,6 @@ public class MainActivity extends AppCompatActivity {
                 final View dialogView = inflater.inflate(R.layout.review_dialog, null);
                 TextView stallName = (TextView) dialogView.findViewById(R.id.stallName);
                 stallName.setText(theStall.getName());
-                final EditText edit = (EditText) dialogView.findViewById(R.id.commentWrite);
-                edit.setOnFocusChangeListener(new OnFocusChangeListener(){
-                    public void onFocusChange(View v, boolean hasFocus){
-                        edit.setHint("");
-                    }
-                });
 
                 builder.setView(dialogView);
                 builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
@@ -322,8 +391,11 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Rating: "+rating+" and Comment: "+comment, Toast.LENGTH_SHORT).show();
 
                         //to refresh layout
-                        showInfoAndReviews(theStall);
-
+                        //with dummy
+                        Review review3 = new Review(3,"Lorem","Meh!", "11-08-2017 18:30", 1);
+                        reviews.add(review3);
+                        System.out.println(reviews);
+                        runOnUiThread(run);
                     }
                 });
 
@@ -351,6 +423,7 @@ public class MainActivity extends AppCompatActivity {
     {
         if(inStall){
             populateList(belongsToCanteenView);
+            bottomBar.setOnClickListener(null);
             inStall = false;
             return;
         }
