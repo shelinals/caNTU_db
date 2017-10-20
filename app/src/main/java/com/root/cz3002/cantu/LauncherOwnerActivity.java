@@ -11,6 +11,7 @@ import android.widget.Button;
 
 public class LauncherOwnerActivity extends AppCompatActivity {
 
+    private String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,10 +25,9 @@ public class LauncherOwnerActivity extends AppCompatActivity {
 
         Bundle bundleOld = getIntent().getExtras();
 
-        Button login = (Button) findViewById(R.id.login);
         Intent intent = getIntent();
         if (intent.hasExtra("ID")) {
-            String id = bundleOld.getString("ID");
+             id = bundleOld.getString("ID");
         }
 
         final Context context = this;
@@ -35,14 +35,21 @@ public class LauncherOwnerActivity extends AppCompatActivity {
         View orders = (View) findViewById(R.id.orders);
         orders.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                /*Intent intent = new Intent(context, MainActivity.class);
-                bundle.putString("MODE", "canteen");
+                Intent intent = new Intent(context, OwnerActivity.class);
+                bundle.putString("ID", id);
                 intent.putExtras(bundle);
-                startActivity(intent);*/
+                startActivity(intent);
                 //start Orders activity
             }
         });
 
-
+        View logout = (View) findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(context, LauncherActivity.class);
+                startActivity(intent);
+                //start Orders activity
+            }
+        });
     }
 }

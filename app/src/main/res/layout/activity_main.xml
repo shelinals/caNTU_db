@@ -9,7 +9,7 @@
     android:orientation="vertical">
     <RelativeLayout
         android:id="@+id/toolbar"
-        android:layout_width="500dp"
+        android:layout_width="360dp"
         android:layout_height="65dp"
         android:orientation="horizontal" />
     <ScrollView
@@ -32,6 +32,23 @@
         android:layout_alignParentBottom="true">
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/bottom_bar_category"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/textCanteen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="30sp"
+            android:textAlignment="center"
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@drawable/rounded_corner_orange"
+            android:text="Category Info" />
+    </RelativeLayout>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/switchMode"
         android:layout_width="wrap_content"
@@ -43,4 +60,41 @@
         android:clickable="true"
         app:fabSize="normal"
         app:srcCompat="@drawable/cuisine" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/orderList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="22dp"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/order_list"
+        android:layout_above="@+id/dabaoer"
+        android:layout_alignParentRight="true"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/dabaoer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="22dp"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/dabaoer"
+        android:layout_above="@+id/cash"
+        android:layout_alignParentRight="true"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/cash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="24dp"
+        android:layout_marginRight="22dp"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/cash" />
+
 </RelativeLayout>
